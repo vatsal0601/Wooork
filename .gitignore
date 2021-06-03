@@ -1,3 +1,5 @@
-.gitignore
 .vscode
+.env
 node_modules
+test.rest
+data.json

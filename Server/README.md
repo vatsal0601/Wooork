@@ -4,6 +4,7 @@
 
 - **user_id**
 - name
+- username
 - email
 - password
 - phone
@@ -32,7 +33,12 @@
 - description
 - status
 
-## Bookmark
+## Saved
 
 - _user_id_
 - project_id [array]
+
+### Developer Note
+
+- Searching user with skills is left
+- Separate controller logic from routes
