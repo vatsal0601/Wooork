@@ -1,3 +1,9 @@
+### Developer Note
+
+- [ ] Searching user with skills is left
+- [ ] Separate controller logic from routes
+- [ ] Updated notification is not sent back
+
 # Database Tables
 
 ## User
@@ -35,9 +41,3 @@
 
 - _user_id_
 - project_id [array]
-
-### Developer Note
-
-- [ ] Searching user with skills is left
-- [ ] Separate controller logic from routes
-- [ ] Updated notification is not sent back
