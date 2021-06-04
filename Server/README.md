@@ -6,7 +6,7 @@
 
 # Database Tables
 
-## User
+### User
 
 - **user_id**
 - name
@@ -19,7 +19,7 @@
 - experience [array] (company_name, role, duration, work_description)
 - skills [array]
 
-## Project
+### Project
 
 - **project_id**
 - _user_id_
@@ -32,12 +32,12 @@
 - image
 - project_status
 
-## Notification
+### Notification
 
 - _user_id_
 - notification [array] (_project_id_, description, status)
 
-## Saved
+### Saved
 
 - _user_id_
 - project_id [array]
