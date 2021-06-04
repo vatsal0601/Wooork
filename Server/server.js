@@ -14,4 +14,10 @@ app.use(express.json());
 const userRouter = require("./routes/user");
 app.use("/user", userRouter);
 
+const projectRouter = require("./routes/project");
+app.use("/project", projectRouter);
+
+const notificationRouter = require("./routes/notification");
+app.use("/notification", notificationRouter);
+
 app.listen(5000);

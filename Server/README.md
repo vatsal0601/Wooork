@@ -29,9 +29,7 @@
 ## Notification
 
 - _user_id_
-- _project_id_
-- description
-- status
+- notification [array] (_project_id_, description, status)
 
 ## Saved
 
@@ -40,5 +38,6 @@
 
 ### Developer Note
 
-- Searching user with skills is left
-- Separate controller logic from routes
+- [ ] Searching user with skills is left
+- [ ] Separate controller logic from routes
+- [ ] Updated notification is not sent back

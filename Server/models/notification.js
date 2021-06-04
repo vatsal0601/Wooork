@@ -5,15 +5,26 @@ const notificationSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	project_id: {
-		type: String,
-		required: true,
-	},
-	description: {
-		type: String,
-		required: true,
-	},
-	project_status: { type: String },
+	notification: [
+		{
+			project_id: {
+				type: String,
+				required: true,
+			},
+			description: {
+				type: String,
+				required: true,
+			},
+			sender_info: {
+				id: {
+					type: String,
+				},
+				name: {
+					type: String,
+				},
+			},
+		},
+	],
 });
 
 module.exports = mongoose.model("Notification", notificationSchema);
