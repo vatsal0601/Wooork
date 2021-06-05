@@ -4,7 +4,11 @@ require("dotenv").config();
 
 const app = express();
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DATABASE_URL, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useFindAndModify: false,
+});
 const database = mongoose.connection;
 database.on("error", (err) => console.error(err));
 database.once("open", () => console.log("Database Connected"));
@@ -19,5 +23,8 @@ app.use("/project", projectRouter);
 
 const notificationRouter = require("./routes/notification");
 app.use("/notification", notificationRouter);
+
+const savedRouter = require("./routes/saved");
+app.use("/saved", savedRouter);
 
 app.listen(5000);

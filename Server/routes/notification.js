@@ -28,7 +28,7 @@ router.post("/:user_id", async (req, res, next) => {
 		});
 	} else {
 		try {
-			notification = await Notification.findAndModify(
+			notification = await Notification.findOneAndUpdate(
 				{ user_id: req.body.user_id },
 				{ $push: { notification: req.body.notification } }
 			);
@@ -44,7 +44,7 @@ router.post("/:user_id", async (req, res, next) => {
 	}
 });
 
-// Get project by id
+// Get notification by id
 router.get("/:user_id", getNotificationByUserId, (req, res, next) => {
 	if (res.notification != null) res.json(res.notification);
 	else res.json({ message: "Zero notifications" });

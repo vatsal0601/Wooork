@@ -1,8 +1,11 @@
 ### Developer Note
 
-- [ ] Searching user with skills is left
+- [ ] Add GitHub OAuth
+- [ ] Searching user with skills
 - [ ] Separate controller logic from routes
-- [ ] Updated notification is not sent back
+- [ ] Get project by user_id
+- [ ] Add or remove collaborators in projects
+- [ ] Change remove project method to patch in saved
 
 # Database Tables
 
@@ -41,3 +44,11 @@
 
 - _user_id_
 - project_id [array]
+
+# Routes
+
+### User
+
+| Method | Route                      | Description   |
+| ------ | -------------------------- | ------------- |
+| GET    | http://localhost:5000/user | Get all users |
