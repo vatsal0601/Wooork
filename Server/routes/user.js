@@ -28,7 +28,7 @@ const getUserByUsername = async (req, res, next) => {
 
 // Creating User
 router.post("/", async (req, res, next) => {
-	const user = new User({
+	user = new User({
 		name: req.body.name,
 		username: req.body.username,
 		email: req.body.email,
@@ -80,6 +80,13 @@ router.patch("/update=:id", getUserById, async (req, res, next) => {
 	} catch (err) {
 		res.status(400).json({ message: err });
 	}
+});
+
+// Get array of skill from all users
+router.get("/skills", async (req, res, next) => {
+	const skills = await User.find({}, { skills: 1, _id: 0 });
+	if (skills == null) return res.status(404).json({ message: "No skills available" });
+	res.json(skills);
 });
 
 // Get user by id

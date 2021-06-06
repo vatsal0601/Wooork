@@ -46,8 +46,8 @@ router.post("/:user_id", async (req, res, next) => {
 
 // Get notification by id
 router.get("/:user_id", getNotificationByUserId, (req, res, next) => {
-	if (res.notification != null) res.json(res.notification);
-	else res.json({ message: "Zero notifications" });
+	if (res.notification != null) return res.json(res.notification);
+	res.json({ message: "Zero notifications" });
 });
 
 module.exports = router;

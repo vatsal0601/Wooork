@@ -15,6 +15,9 @@ database.once("open", () => console.log("Database Connected"));
 
 app.use(express.json());
 
+const authRouter = require("./routes/auth");
+app.use("/auth", authRouter);
+
 const userRouter = require("./routes/user");
 app.use("/user", userRouter);
 

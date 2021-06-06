@@ -66,8 +66,8 @@ router.post("/:user_id", async (req, res, next) => {
 
 // Get saved by id
 router.get("/:user_id", getSavedByUserId, (req, res, next) => {
-	if (res.saved != null) res.json(res.saved);
-	else res.json({ message: "Zero saved projects" });
+	if (res.saved != null) return res.json(res.saved);
+	res.json({ message: "Zero saved projects" });
 });
 
 module.exports = router;

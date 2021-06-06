@@ -6,6 +6,7 @@
 - [ ] Get project by user_id
 - [ ] Add or remove collaborators in projects
 - [ ] Change remove project method to patch in saved
+- [ ] Check for user before registration in frontend
 
 # Database Tables
 
