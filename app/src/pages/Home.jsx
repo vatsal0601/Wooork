@@ -8,8 +8,13 @@ import Image3 from "../images/image3.jfif";
 import User1 from "../images/user1.jfif";
 import User2 from "../images/user2.jfif";
 import User3 from "../images/user3.jfif";
+import { useEffect } from "react";
 
 const Home = () => {
+	useEffect(() => {
+		document.title = "Wooork";
+	}, []);
+
 	return (
 		<>
 			<Hero />

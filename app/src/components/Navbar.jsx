@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "../images/logo.svg";
 
 const Navbar = ({ toggle }) => {
@@ -7,33 +7,33 @@ const Navbar = ({ toggle }) => {
 			<nav
 				className="container mx-auto py-3 px-5 md:px-10 flex items-center justify-between"
 				role="navigation">
-				<Link to="/">
+				<NavLink to="/">
 					<div className="inline-flex items-center gap-2">
 						<img src={Logo} alt="Logo" className="w-6 md:w-8 h-6 md:h-8" />
 						<h1 className="text-xl md:text-2xl font-semibold active:text-blue-600">Wooork</h1>
 					</div>
-				</Link>
+				</NavLink>
 				<ul className="hidden md:flex gap-5 lg:gap-7 font-semibold">
 					<li className="text-gray-600 active:text-blue-600 transition-colors">
 						<a href="https://github.com/vatsal0601/Wooork">GitHub</a>
 					</li>
-					<Link to="/about">
+					<NavLink to="/about" activeClassName="font-bold">
 						<li className="text-gray-600 active:text-blue-600 transition-colors">About</li>
-					</Link>
-					<Link to="/explore">
+					</NavLink>
+					<NavLink to="/explore" activeClassName="font-bold">
 						<li className="text-gray-600 active:text-blue-600 transition-colors">Explore</li>
-					</Link>
-					<Link to="/dashboard">
+					</NavLink>
+					<NavLink to="/dashboard" activeClassName="font-bold">
 						<li className="text-gray-600 active:text-blue-600 transition-colors">Dashboard</li>
-					</Link>
+					</NavLink>
 				</ul>
 				<ul className="hidden md:flex gap-5 lg:gap-7 font-semibold">
-					<Link to="/login">
+					<NavLink to="/login" activeClassName="font-bold">
 						<li className="text-gray-600 active:text-blue-600 transition-colors">Login</li>
-					</Link>
-					<Link to="/register">
+					</NavLink>
+					<NavLink to="/register" activeClassName="font-bold">
 						<li className="text-gray-600 active:text-blue-600 transition-colors">Register</li>
-					</Link>
+					</NavLink>
 				</ul>
 				<svg
 					onClick={toggle}

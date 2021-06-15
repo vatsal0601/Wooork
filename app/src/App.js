@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";
@@ -7,6 +7,9 @@ import About from "./pages/About.jsx";
 import Explore from "./pages/Explore.jsx";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Project from "./pages/Project.jsx";
 import Profile from "./pages/Profile.jsx";
 
 function App() {
@@ -15,6 +18,20 @@ function App() {
 	const toggle = () => {
 		setIsOpen(!isOpen);
 	};
+
+	useEffect(() => {
+		const hideMenu = () => {
+			if (window.innerWidth > 768 && isOpen) {
+				setIsOpen(false);
+			}
+		};
+
+		window.addEventListener("resize", hideMenu);
+
+		return () => {
+			window.removeEventListener("resize", hideMenu);
+		};
+	});
 
 	return (
 		<div className="min-h-screen relative pb-16 bg-gray-100">
@@ -33,6 +50,15 @@ function App() {
 					</Route>
 					<Route path="/profile">
 						<Profile />
+					</Route>
+					<Route path="/project">
+						<Project />
+					</Route>
+					<Route path="/login">
+						<Login />
+					</Route>
+					<Route path="/register">
+						<Register />
 					</Route>
 					<Route path="/">
 						<Home />

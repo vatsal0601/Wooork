@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Image from "../images/hero.svg";
 
 const Hero = () => {
@@ -11,9 +13,11 @@ const Hero = () => {
 					A platform where people can find projects to work on, find people to work with together
 					for projects or freelancing work.
 				</p>
-				<button className="px-5 py-3 rounded-md active:bg-blue-600 active:text-white transition-colors text-sm lg:text-base xl:text-lg font-semibold border-2 border-blue-600 focus:outline-none">
+				<Link
+					to="/register"
+					className="block w-max px-5 py-3 rounded-md active:bg-blue-600 active:text-white transition-colors text-sm lg:text-base xl:text-lg font-semibold border-2 border-blue-600 focus:outline-none">
 					Get Started
-				</button>
+				</Link>
 			</div>
 			<img src={Image} alt="Hero" className="mt-8 mx-auto w-96 xl:w-2/5" />
 		</div>
