@@ -1,6 +1,6 @@
 ### Developer Note
 
-- [ ] Add GitHub OAuth
+- [x] Add GitHub OAuth
 - [ ] Searching user with skills
 - [ ] Separate controller logic from routes
 - [ ] Get project by user_id
