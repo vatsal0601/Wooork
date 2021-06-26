@@ -1,14 +1,9 @@
-import { Fragment, useState } from "react";
 import { Listbox } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
-const search = ["Projects", "Profile"];
-
-const SearchListbox = () => {
-	const [selected, setSelected] = useState(search[0]);
-
+const Dropdown = ({ list, selected, setSelected }) => {
 	return (
-		<div className="w-32">
+		<div>
 			<Listbox value={selected} onChange={setSelected}>
 				<div className="relative">
 					<Listbox.Button className="relative w-full py-3 pl-3 pr-10 text-left bg-white rounded-md shadow-md cursor-pointer focus:ring-2 ring-blue-600 focus:outline-none">
@@ -18,7 +13,7 @@ const SearchListbox = () => {
 						</span>
 					</Listbox.Button>
 					<Listbox.Options className="absolute w-full py-2 mt-1 overflow-auto bg-white rounded-md shadow-md max-h-60 focus:outline-none">
-						{search.map((value, index) => (
+						{list.map((value, index) => (
 							<Listbox.Option
 								key={index}
 								className={({ active }) =>
@@ -52,4 +47,4 @@ const SearchListbox = () => {
 	);
 };
 
-export default SearchListbox;
+export default Dropdown;

@@ -7,6 +7,7 @@ import About from "./pages/About.jsx";
 import Explore from "./pages/Explore.jsx";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home.jsx";
+import GitHub from "./pages/GitHub.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Project from "./pages/Project.jsx";
@@ -59,6 +60,9 @@ function App() {
 					</Route>
 					<Route path="/register">
 						<Register />
+					</Route>
+					<Route path="/github/:data">
+						<GitHub />
 					</Route>
 					<Route path="/">
 						<Home />

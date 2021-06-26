@@ -1,10 +1,15 @@
-import ListBox from "./SearchListbox";
+import { useState } from "react";
+import Dropdown from "./Dropdown";
 
 const Search = () => {
+	const search = ["Projects", "Profile"];
+
+	const [selected, setSelected] = useState(search[0]);
+
 	return (
 		<div>
 			<form className="flex items-center justify-center gap-3 my-28">
-				<ListBox />
+				<Dropdown list={search} selected={selected} setSelected={setSelected} className="w-32" />
 				<input
 					type="text"
 					name="search"

@@ -32,7 +32,7 @@ router.post("/", async (req, res, next) => {
 		name: req.body.name,
 		username: req.body.username,
 		email: req.body.email,
-		password: req.body.password,
+		avatar: req.body.avatar,
 		phone: req.body.phone,
 		social_links: req.body.social_links,
 		education: req.body.education,
@@ -67,7 +67,7 @@ router.patch("/update=:id", getUserById, async (req, res, next) => {
 	if (req.body.name != null) res.user.name = req.body.name;
 	if (req.body.username != null) res.user.username = req.body.username;
 	if (req.body.email != null) res.user.email = req.body.email;
-	if (req.body.password != null) res.user.password = req.body.password;
+	if (req.body.avatar != null) res.user.avatar = req.body.avatar;
 	if (req.body.phone != null) res.user.phone = req.body.phone;
 	if (req.body.social_links != null) res.user.social_links = req.body.social_links;
 	if (req.body.education != null) res.user.education = req.body.education;
@@ -86,7 +86,11 @@ router.patch("/update=:id", getUserById, async (req, res, next) => {
 router.get("/skills", async (req, res, next) => {
 	const skills = await User.find({}, { skills: 1, _id: 0 });
 	if (skills == null) return res.status(404).json({ message: "No skills available" });
-	res.json(skills);
+	let skillsArray = [];
+	for (skill of skills) {
+		for (element of skill.skills) skillsArray.push(element);
+	}
+	res.json([...new Set(skillsArray)]);
 });
 
 // Get user by id
