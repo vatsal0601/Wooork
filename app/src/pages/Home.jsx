@@ -1,53 +1,70 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "../axios";
 import Hero from "../components/Hero";
 import Card from "../components/Card";
 import Profile from "../components/Profile";
 
-import Image1 from "../images/image1.jfif";
-import Image2 from "../images/image2.jfif";
-import Image3 from "../images/image3.jfif";
-import User1 from "../images/user1.jfif";
-import User2 from "../images/user2.jfif";
-import User3 from "../images/user3.jfif";
-import { useEffect } from "react";
-
 const Home = () => {
+	const [skills, setSkills] = useState([]);
+	const [cardData, setCardData] = useState([]);
+	const [profileData, setProfileData] = useState([]);
+
 	useEffect(() => {
 		document.title = "Wooork";
+
+		const fetchData = async () => {
+			const reqSkills = await axios.get("/user/skills");
+			const reqCardData = await axios.get("/project/random");
+			const reqProfileData = await axios.get("/user/random");
+			setSkills(reqSkills.data);
+			setCardData(reqCardData.data);
+			setProfileData(reqProfileData.data);
+		};
+		fetchData();
 	}, []);
 
 	return (
 		<>
 			<Hero />
-			<div className="container mx-auto px-5 md:px-10 mb-8 lg:mb-12">
-				<h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3">Some skills to navigate</h1>
-				<div className="flex flex-wrap gap-3">
-					<div className="px-3 py-2 text-sm lg:text-base xl:text-lg rounded-full border-2 border-blue-600 font-semibold">
-						Frontend Development
-					</div>
-					<div className="px-3 py-2 text-sm lg:text-base xl:text-lg rounded-full border-2 border-blue-600 font-semibold">
-						Backend Development
-					</div>
-					<div className="px-3 py-2 text-sm lg:text-base xl:text-lg rounded-full border-2 border-blue-600 font-semibold">
-						Machine Learning
+			{skills && skills.length > 0 && (
+				<div className="container mx-auto px-5 md:px-10 mb-8 lg:mb-12">
+					<h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3">
+						Some skills to navigate
+					</h1>
+					<div className="flex flex-wrap gap-3">
+						{skills.slice(0, 15).map((skill, index) => (
+							<div
+								key={index}
+								className="px-3 py-2 text-sm lg:text-base xl:text-lg rounded-full border-2 border-blue-600 font-semibold">
+								{skill}
+							</div>
+						))}
 					</div>
 				</div>
-			</div>
-			<div className="container mx-auto px-5 md:px-10 mb-8 lg:mb-12">
-				<h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3">Some recent projects</h1>
-				<div className="flex flex-wrap gap-3">
-					<Card Image={Image1} />
-					<Card Image={Image2} />
-					<Card Image={Image3} />
+			)}
+			{cardData && cardData.length > 0 && (
+				<div className="container mx-auto px-5 md:px-10 mb-8 lg:mb-12">
+					<h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3">Some recent projects</h1>
+					<div className="flex flex-wrap gap-3">
+						{cardData.map((card, index) => (
+							<Card key={index} CardInfo={card} />
+						))}
+					</div>
 				</div>
-			</div>
-			<div className="container mx-auto px-5 md:px-10 mb-8 lg:mb-12">
-				<h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3">Some recent profiles</h1>
-				<div className="flex flex-wrap gap-3">
-					<Profile Image={User1} />
-					<Profile Image={User2} />
-					<Profile Image={User3} />
+			)}
+			{profileData && profileData.length > 0 && (
+				<div className="container mx-auto px-5 md:px-10 mb-8 lg:mb-12">
+					<h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3">Some recent profiles</h1>
+					<div className="flex flex-wrap gap-3">
+						{profileData.map((profile, index) => (
+							<Link key={index} to={`/profile/${profile._id}`}>
+								<Profile UserInfo={profile} />
+							</Link>
+						))}
+					</div>
 				</div>
-			</div>
+			)}
 		</>
 	);
 };

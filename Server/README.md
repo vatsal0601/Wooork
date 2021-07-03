@@ -1,13 +1,15 @@
 ### Developer Note
 
 - [x] Add GitHub OAuth
-- [ ] Searching user with skills
+- [x] Searching user with skills
+- [x] Check for user before registration in frontend
+- [x] Get project by user_id
+- [x] Remove password field from user model
 - [ ] Separate controller logic from routes
-- [ ] Get project by user_id
 - [ ] Add or remove collaborators in projects
 - [ ] Change remove project method to patch in saved
-- [ ] Check for user before registration in frontend
-- [ ] Remove password field from user model
+- [ ] Add notification field
+- [ ] Add edit option
 
 # Database Tables
 
@@ -17,7 +19,7 @@
 - name
 - username
 - email
-- password
+- avatar
 - phone
 - social_links [array] (app_name, url)
 - education [array] (institute_name, year_of_graduation, qualification, graduation_field)

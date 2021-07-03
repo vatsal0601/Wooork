@@ -11,26 +11,6 @@ export const userData = (payload) => {
 	};
 };
 
-export const deleteUserData = () => {
-	return {
-		type: "DELETE_USER_DATA",
-	};
-};
-
-export const notificationData = (payload) => {
-	return {
-		type: "NOTIFICATION_DATA",
-		payload,
-	};
-};
-
-export const addNotification = (payload) => {
-	return {
-		type: "ADD_NOTIFICATION",
-		payload,
-	};
-};
-
 export const savedData = (payload) => {
 	return {
 		type: "SAVED_DATA",
@@ -38,16 +18,14 @@ export const savedData = (payload) => {
 	};
 };
 
-export const addProject = (payload) => {
+export const removeUserData = () => {
 	return {
-		type: "ADD_PROJECT",
-		payload,
+		type: "REMOVE_USER_DATA",
 	};
 };
 
-export const removeProject = (payload) => {
+export const removeSavedData = () => {
 	return {
-		type: "REMOVE_PROJECT",
-		payload,
+		type: "REMOVE_SAVED_DATA",
 	};
 };

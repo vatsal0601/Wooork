@@ -1,28 +1,61 @@
+import { Link } from "react-router-dom";
 import Card from "./Card";
 import Profile from "./Profile";
 
-import Image1 from "../images/image1.jfif";
-import Image2 from "../images/image2.jfif";
-import Image3 from "../images/image3.jfif";
-import User1 from "../images/user1.jfif";
-import User2 from "../images/user2.jfif";
-import User3 from "../images/user3.jfif";
+const ExploreRightContainer = ({ selected, data, search }) => {
+	const filterData = () => {
+		let filteredArray = [];
+		switch (selected) {
+			case "Projects":
+				filteredArray = data.filter((value) => {
+					if (search === "") return value;
+					else if (value.project_name.toLowerCase().includes(search.toLowerCase())) return value;
+					return null;
+				});
+				break;
+			case "Profiles":
+				filteredArray = data.filter((value) => {
+					if (search === "") return value;
+					else if (value.name.toLowerCase().includes(search.toLowerCase())) return value;
+					return null;
+				});
+				break;
+			default:
+				break;
+		}
+		return filteredArray;
+	};
 
-const ExploreRightContainer = () => {
 	return (
 		<div className="flex-grow rounded-md space-y-3">
-			<div className="flex flex-wrap justify-center md:justify-start gap-3">
-				<Card Image={Image1} />
-				<Card Image={Image1} />
-				<Card Image={Image2} />
-				<Card Image={Image3} />
-			</div>
-			<div className="flex flex-wrap justify-center md:justify-start gap-3">
-				<Profile Image={User1} />
-				<Profile Image={User2} />
-				<Profile Image={User3} />
-				<Profile Image={User3} />
-			</div>
+			{selected === "Projects" &&
+				(data && data.length > 0 ? (
+					<div className="flex flex-wrap justify-center md:justify-start gap-3">
+						{filterData().length > 0 ? (
+							filterData().map((element, index) => <Card key={index} CardInfo={element} />)
+						) : (
+							<p className="text-center lg:text-lg italic">No projects to display</p>
+						)}
+					</div>
+				) : (
+					<p className="text-center lg:text-lg italic">No projects to display</p>
+				))}
+			{selected === "Profiles" &&
+				(data && data.length > 0 ? (
+					<div className="flex flex-wrap justify-center md:justify-start gap-3">
+						{filterData().length > 0 ? (
+							filterData().map((element, index) => (
+								<Link key={index} to={`profile/${element._id}`}>
+									<Profile UserInfo={element} />
+								</Link>
+							))
+						) : (
+							<p className="text-center lg:text-lg italic">No profiles to display</p>
+						)}
+					</div>
+				) : (
+					<p className="text-center lg:text-lg italic">No profiles to display</p>
+				))}
 		</div>
 	);
 };

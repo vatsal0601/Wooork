@@ -1,16 +1,9 @@
-const initialState = {
-	user_id: null,
-	project_id: null,
-};
-
-const savedReducer = (state = initialState, action) => {
+const savedReducer = (state = {}, action) => {
 	switch (action.type) {
 		case "SAVED_DATA":
-			return (state = action.payload);
-		case "ADD_PROJECT":
-			return (state.project_id = [...state.project_id, action.payload]);
-		case "REMOVE_PROJECT":
-			return (state.project_id = state.project_id.filter((element) => element !== action.payload));
+			return action.payload;
+		case "REMOVE_SAVED_DATA":
+			return {};
 		default:
 			return state;
 	}

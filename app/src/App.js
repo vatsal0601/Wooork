@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import Footer from "./components/Footer.jsx";
@@ -15,6 +16,8 @@ import Profile from "./pages/Profile.jsx";
 
 function App() {
 	const [isOpen, setIsOpen] = useState(false);
+
+	const isAuthorized = useSelector((state) => state.isAuthorized);
 
 	const toggle = () => {
 		setIsOpen(!isOpen);
@@ -46,13 +49,15 @@ function App() {
 					<Route path="/explore">
 						<Explore />
 					</Route>
-					<Route path="/dashboard">
-						<Dashboard />
-					</Route>
-					<Route path="/profile">
+					{isAuthorized && (
+						<Route path="/dashboard">
+							<Dashboard />
+						</Route>
+					)}
+					<Route path="/profile/:id">
 						<Profile />
 					</Route>
-					<Route path="/project">
+					<Route path="/project/:id">
 						<Project />
 					</Route>
 					<Route path="/login">

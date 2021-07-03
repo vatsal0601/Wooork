@@ -82,6 +82,17 @@ router.patch("/update=:id", getUserById, async (req, res, next) => {
 	}
 });
 
+// Get random users
+router.get("/random", async (req, res, next) => {
+	try {
+		user = await User.aggregate([{ $sample: { size: 5 } }]);
+		if (user == null) return res.status(404).json({ message: "Cannot get users" });
+		res.json(user);
+	} catch (err) {
+		res.status(500).json({ message: err });
+	}
+});
+
 // Get array of skill from all users
 router.get("/skills", async (req, res, next) => {
 	const skills = await User.find({}, { skills: 1, _id: 0 });
@@ -91,6 +102,17 @@ router.get("/skills", async (req, res, next) => {
 		for (element of skill.skills) skillsArray.push(element);
 	}
 	res.json([...new Set(skillsArray)]);
+});
+
+// Get search results from array
+router.get("/search/:array", async (req, res, next) => {
+	searchArray = req.params.array.split("&");
+	try {
+		const search = await User.find({ skills: { $in: searchArray } });
+		res.json(search);
+	} catch (err) {
+		res.status(500).json({ message: err });
+	}
 });
 
 // Get user by id

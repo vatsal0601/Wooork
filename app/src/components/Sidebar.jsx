@@ -1,11 +1,11 @@
+import { XIcon } from "@heroicons/react/solid";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { authorize } from "../actions";
-
-import Image from "../images/user3.jfif";
+import { authorize, removeUserData, removeSavedData } from "../actions";
 
 const Sidebar = ({ isOpen, toggle }) => {
 	const isAuthorized = useSelector((state) => state.isAuthorized);
+	const user = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 
 	return (
@@ -16,20 +16,10 @@ const Sidebar = ({ isOpen, toggle }) => {
 					: "hidden"
 			}
 			role="navigation">
-			<svg
+			<XIcon
 				onClick={toggle}
-				className="w-8 h-8 active:text-blue-600 transition-colors absolute right-3 top-3 cursor-pointer"
-				fill="none"
-				stroke="currentColor"
-				viewBox="0 0 24 24"
-				xmlns="http://www.w3.org/2000/svg">
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={2}
-					d="M6 18L18 6M6 6l12 12"
-				/>
-			</svg>
+				className="w-8 h-8 text-gray-600 active:text-blue-600 transition-colors absolute right-3 top-3 cursor-pointer"
+			/>
 			<NavLink to="/">
 				<h1 onClick={toggle} className="text-5xl text-blue-600 font-bold">
 					Wooork
@@ -38,12 +28,16 @@ const Sidebar = ({ isOpen, toggle }) => {
 			<ul className="w-full flex flex-col items-start gap-7 font-semibold">
 				{isAuthorized && (
 					<li className="w-full flex items-center justify-between">
-						<NavLink to="/profile" activeClassName="font-bold">
+						<NavLink to={`/profile/${user._id}`} activeClassName="font-bold">
 							<div
 								onClick={toggle}
 								className="text-gray-600 active:text-blue-600 transition-colors flex items-center gap-3">
-								<img src={Image} alt="name" className="w-10 h-10 object-cover rounded-full" />
-								Vatsal Sakariya
+								<img
+									src={user.avatar}
+									alt={user.name}
+									className="w-10 h-10 object-cover rounded-full"
+								/>
+								{user.name}
 							</div>
 						</NavLink>
 						<div>
@@ -51,6 +45,8 @@ const Sidebar = ({ isOpen, toggle }) => {
 								onClick={() => {
 									toggle();
 									dispatch(authorize());
+									dispatch(removeUserData());
+									dispatch(removeSavedData());
 								}}
 								className="bg-blue-600 active:bg-transparent border-2 border-blue-600 font-semibold text-white active:text-black px-2 py-1 focus:outline-none transition-colors rounded-md">
 								Logout

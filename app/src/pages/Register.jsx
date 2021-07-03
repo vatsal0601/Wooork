@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "../components/RegisterForm";
-import GitHub from "../images/github.svg";
+import GitHub from "../components/GitHubIcon";
 
 const Register = () => {
 	useEffect(() => {
@@ -24,7 +24,7 @@ const Register = () => {
 							href={`${process.env.REACT_APP_BASE_URL}/auth/github`}
 							onClick={() => setFormStep((currentFormStep) => currentFormStep + 1)}
 							className="w-full md:w-3/4 xl:w-2/5 mx-auto inline-flex items-center justify-center gap-3 md:gap-5 font-semibold md:text-lg px-5 py-3 rounded-md active:bg-blue-600 active:text-white transition-colors border-2 border-blue-600 focus:outline-none">
-							<img src={GitHub} alt="GitHub Logo" className="w-7 md:w-9 h-7 md:h-9" />
+							<GitHub className="w-7 md:w-9 h-7 md:h-9" />
 							Register with GitHub
 						</a>
 					</div>

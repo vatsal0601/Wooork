@@ -26,6 +26,18 @@ const getProjectByName = async (req, res, next) => {
 	next();
 };
 
+const getProjectsByUserId = async (req, res, next) => {
+	let project;
+	try {
+		project = await Project.find({ user_id: req.params.user_id });
+		if (project == null) return res.status(404).json({ message: "Cannot find projects" });
+	} catch (err) {
+		return res.status(500).json({ message: err });
+	}
+	res.project = project;
+	next();
+};
+
 // Creating Project
 router.post("/", async (req, res, next) => {
 	const project = new Project({
@@ -45,6 +57,11 @@ router.post("/", async (req, res, next) => {
 	} catch (err) {
 		res.status(400).json({ message: err });
 	}
+});
+
+// Get projects by user_id
+router.get("/user_id=:user_id", getProjectsByUserId, (req, res, next) => {
+	res.json(res.project);
 });
 
 // Get project by project_name
@@ -77,6 +94,38 @@ router.patch("/update=:id", getProjectById, async (req, res, next) => {
 		res.json(updatedProject);
 	} catch (err) {
 		res.status(400).json({ message: err });
+	}
+});
+
+router.get("/random", async (req, res, next) => {
+	try {
+		project = await Project.aggregate([{ $sample: { size: 5 } }]);
+		if (project == null) return res.status(404).json({ message: "Cannot get projects" });
+		res.json(project);
+	} catch (err) {
+		res.status(500).json({ message: err });
+	}
+});
+
+// Get array of tags from all projects
+router.get("/tags", async (req, res, next) => {
+	const tags = await Project.find({}, { tag: 1, _id: 0 });
+	if (tags == null) return res.status(404).json({ message: "No tags available" });
+	let tagArray = [];
+	for (tag of tags) {
+		for (element of tag.tag) tagArray.push(element);
+	}
+	res.json([...new Set(tagArray)]);
+});
+
+// Get search results from array
+router.get("/search/:array", async (req, res, next) => {
+	searchArray = req.params.array.split("&");
+	try {
+		const search = await Project.find({ tag: { $in: searchArray } });
+		res.json(search);
+	} catch (err) {
+		res.status(500).json({ message: err });
 	}
 });
 

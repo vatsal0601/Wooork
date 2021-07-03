@@ -64,12 +64,9 @@ router.get("/github/callback", async (req, res, next) => {
 		email: githubData.email,
 	});*/
 	res.redirect(
-		`http://localhost:3000/github/${githubData.login}%20%20${githubData.html_url.replace(
-			/\//g,
-			"-"
-		)}%20%20${githubData.avatar_url.replace(/\//g, "-").replace(/\?/g, "!")}%20%20${
-			githubData.name
-		}%20%20${githubData.email}`
+		`http://localhost:3000/github/${githubData.login}%20${encodeURIComponent(
+			githubData.html_url
+		)}%20${encodeURIComponent(githubData.avatar_url)}%20${githubData.name}%20${githubData.email}`
 	);
 });
 

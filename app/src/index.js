@@ -7,10 +7,35 @@ import reducer from "./reducers/index.jsx";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
+const saveToSessionStorage = (state) => {
+	try {
+		sessionStorage.setItem("state", JSON.stringify(state));
+	} catch (e) {
+		console.error(e);
+	}
+};
+
+const loadFromSessionStorage = () => {
+	try {
+		const stateStr = sessionStorage.getItem("state");
+		return stateStr ? JSON.parse(stateStr) : undefined;
+	} catch (e) {
+		console.error(e);
+		return undefined;
+	}
+};
+
+const persistedStore = loadFromSessionStorage();
+
 const store = createStore(
 	reducer,
+	persistedStore,
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+store.subscribe(() => {
+	saveToSessionStorage(store.getState());
+});
 
 ReactDOM.render(
 	<React.StrictMode>

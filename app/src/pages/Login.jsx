@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import GitHub from "../images/github.svg";
+import GitHub from "../components/GitHubIcon";
 
 const Login = () => {
 	useEffect(() => {
@@ -15,7 +15,7 @@ const Login = () => {
 					<a
 						href={`${process.env.REACT_APP_BASE_URL}/auth/github`}
 						className="w-full flex items-center justify-center gap-3 md:gap-5 font-semibold md:text-lg px-5 py-3 rounded-md active:bg-blue-600 active:text-white transition-colors border-2 border-blue-600 focus:outline-none">
-						<img src={GitHub} alt="GitHub Logo" className="w-7 md:w-9 h-7 md:h-9" />
+						<GitHub className="w-7 md:w-9 h-7 md:h-9" />
 						Login with GitHub
 					</a>
 				</div>
