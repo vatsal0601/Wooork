@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "../axios";
 
@@ -6,6 +7,8 @@ const Profile = () => {
 	const { id } = useParams();
 
 	const [user, setUser] = useState({});
+
+	const isAuthorized = useSelector((state) => state.isAuthorized);
 
 	useEffect(() => {
 		document.title = "Profile";
@@ -18,7 +21,7 @@ const Profile = () => {
 	}, [id]);
 
 	return (
-		<div className="container mx-auto px-5 md:px-10 my-28 space-y-5 md:space-y-0 md:flex items-start justify-center gap-3 lg:gap-10">
+		<div className="container mx-auto px-5 md:px-10 my-28 space-y-5 md:space-y-0 md:flex items-start justify-center gap-3 lg:gap-10 xl:gap-20">
 			<ul className="space-y-5">
 				<li className="lg:text-lg xl:text-xl">
 					<span className="font-semibold text-sm block text-gray-600 lg:text-base xl:text-lg">
@@ -42,18 +45,22 @@ const Profile = () => {
 					</span>
 					<a href={user.URL}>{user.username}</a>
 				</li>
-				<li className="lg:text-lg xl:text-xl">
-					<span className="font-semibold text-sm block text-gray-600 lg:text-base xl:text-lg -mb-1">
-						Email:{" "}
-					</span>
-					<a href={`mailto:${user.email}`}>{user.email}</a>
-				</li>
-				<li className="lg:text-lg xl:text-xl">
-					<span className="font-semibold text-sm block text-gray-600 lg:text-base xl:text-lg -mb-1">
-						Phone:{" "}
-					</span>
-					<a href={`tel:${user.phone}`}>{user.phone}</a>
-				</li>
+				{isAuthorized && (
+					<li className="lg:text-lg xl:text-xl">
+						<span className="font-semibold text-sm block text-gray-600 lg:text-base xl:text-lg -mb-1">
+							Email:{" "}
+						</span>
+						<a href={`mailto:${user.email}`}>{user.email}</a>
+					</li>
+				)}
+				{isAuthorized && (
+					<li className="lg:text-lg xl:text-xl">
+						<span className="font-semibold text-sm block text-gray-600 lg:text-base xl:text-lg -mb-1">
+							Phone:{" "}
+						</span>
+						<a href={`tel:${user.phone}`}>{user.phone}</a>
+					</li>
+				)}
 				{user.skills && user.skills.length > 0 && (
 					<li className="lg:text-lg xl:text-xl">
 						<span className="font-semibold text-sm block text-gray-600 lg:text-base xl:text-lg max-w-prose -mb-1">

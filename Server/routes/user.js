@@ -85,7 +85,7 @@ router.patch("/update=:id", getUserById, async (req, res, next) => {
 // Get random users
 router.get("/random", async (req, res, next) => {
 	try {
-		user = await User.aggregate([{ $sample: { size: 5 } }]);
+		user = await User.aggregate([{ $sample: { size: 3 } }]);
 		if (user == null) return res.status(404).json({ message: "Cannot get users" });
 		res.json(user);
 	} catch (err) {

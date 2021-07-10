@@ -99,7 +99,7 @@ router.patch("/update=:id", getProjectById, async (req, res, next) => {
 
 router.get("/random", async (req, res, next) => {
 	try {
-		project = await Project.aggregate([{ $sample: { size: 5 } }]);
+		project = await Project.aggregate([{ $sample: { size: 4 } }]);
 		if (project == null) return res.status(404).json({ message: "Cannot get projects" });
 		res.json(project);
 	} catch (err) {

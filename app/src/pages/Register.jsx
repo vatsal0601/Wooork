@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Form from "../components/RegisterForm";
 import GitHub from "../components/GitHubIcon";
 
-const Register = () => {
+const Register = ({ formStep, setFormStep }) => {
 	useEffect(() => {
 		document.title = "Register";
 	}, []);
 
 	const MAX_STEP = 2;
-	const [formStep, setFormStep] = useState(0);
 
 	return (
 		<div className="flex flex-col items-center justify-center mx-5 md:mx-10 my-28">

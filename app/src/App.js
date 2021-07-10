@@ -37,6 +37,8 @@ function App() {
 		};
 	});
 
+	const [formStep, setFormStep] = useState(0);
+
 	return (
 		<div className="min-h-screen relative pb-16 bg-gray-100">
 			<Router>
@@ -64,10 +66,10 @@ function App() {
 						<Login />
 					</Route>
 					<Route path="/register">
-						<Register />
+						<Register formStep={formStep} setFormStep={setFormStep} />
 					</Route>
 					<Route path="/github/:data">
-						<GitHub />
+						<GitHub setFormStep={setFormStep} />
 					</Route>
 					<Route path="/">
 						<Home />

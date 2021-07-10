@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { authorize, userData, savedData } from "../actions/index";
 import axios from "../axios";
 
-const Github = () => {
+const Github = ({ setFormStep }) => {
 	const { data } = useParams();
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -35,12 +35,13 @@ const Github = () => {
 				authorizeUser(userGitHubInfo, reqUserData.data, reqUserSavedData.data);
 				history.push("/");
 			} catch (err) {
+				setFormStep(1);
 				history.push("/register");
 				console.error(err);
 			}
 		};
 		fetchData();
-	}, [data, history, dispatch]);
+	}, [data, history, dispatch, setFormStep]);
 
 	return <h1>GitHub Authentication</h1>;
 };

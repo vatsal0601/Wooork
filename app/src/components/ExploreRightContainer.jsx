@@ -30,19 +30,19 @@ const ExploreRightContainer = ({ selected, data, search }) => {
 		<div className="flex-grow rounded-md space-y-3">
 			{selected === "Projects" &&
 				(data && data.length > 0 ? (
-					<div className="flex flex-wrap justify-center md:justify-start gap-3">
+					<div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-3">
 						{filterData().length > 0 ? (
 							filterData().map((element, index) => <Card key={index} CardInfo={element} />)
 						) : (
-							<p className="text-center lg:text-lg italic">No projects to display</p>
+							<p className="lg:text-lg italic">No projects to display</p>
 						)}
 					</div>
 				) : (
-					<p className="text-center lg:text-lg italic">No projects to display</p>
+					<p className="lg:text-lg italic">No projects to display</p>
 				))}
 			{selected === "Profiles" &&
 				(data && data.length > 0 ? (
-					<div className="flex flex-wrap justify-center md:justify-start gap-3">
+					<div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
 						{filterData().length > 0 ? (
 							filterData().map((element, index) => (
 								<Link key={index} to={`profile/${element._id}`}>
@@ -50,11 +50,11 @@ const ExploreRightContainer = ({ selected, data, search }) => {
 								</Link>
 							))
 						) : (
-							<p className="text-center lg:text-lg italic">No profiles to display</p>
+							<p className="lg:text-lg italic">No profiles to display</p>
 						)}
 					</div>
 				) : (
-					<p className="text-center lg:text-lg italic">No profiles to display</p>
+					<p className="lg:text-lg italic">No profiles to display</p>
 				))}
 		</div>
 	);

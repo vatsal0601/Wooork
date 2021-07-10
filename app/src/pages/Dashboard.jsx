@@ -46,7 +46,7 @@ const Dashboard = () => {
 			<Profile />
 			<div className="space-y-5 md:space-y-7 mx-auto max-w-max">
 				<Dropdown list={category} selected={selected} setSelected={setSelected} />
-				<div className="flex flex-wrap justify-center gap-3">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
 					{cards && cards.length > 0 ? (
 						cards.map((card, index) => <Card key={index} CardInfo={card} />)
 					) : (

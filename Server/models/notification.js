@@ -7,13 +7,16 @@ const notificationSchema = new mongoose.Schema({
 	},
 	notification: [
 		{
-			project_id: {
-				type: String,
-				required: true,
+			project: {
+				id: {
+					type: String,
+				},
+				name: {
+					type: String,
+				},
 			},
 			description: {
 				type: String,
-				required: true,
 			},
 			sender_info: {
 				id: {

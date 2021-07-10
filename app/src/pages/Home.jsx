@@ -46,7 +46,7 @@ const Home = () => {
 			{cardData && cardData.length > 0 && (
 				<div className="container mx-auto px-5 md:px-10 mb-8 lg:mb-12">
 					<h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3">Some recent projects</h1>
-					<div className="flex flex-wrap gap-3">
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
 						{cardData.map((card, index) => (
 							<Card key={index} CardInfo={card} />
 						))}
@@ -56,7 +56,7 @@ const Home = () => {
 			{profileData && profileData.length > 0 && (
 				<div className="container mx-auto px-5 md:px-10 mb-8 lg:mb-12">
 					<h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3">Some recent profiles</h1>
-					<div className="flex flex-wrap gap-3">
+					<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
 						{profileData.map((profile, index) => (
 							<Link key={index} to={`/profile/${profile._id}`}>
 								<Profile UserInfo={profile} />

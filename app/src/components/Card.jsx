@@ -11,7 +11,7 @@ const Card = ({ CardInfo }) => {
 	const dispatch = useDispatch();
 
 	const renderSaveButton = () => {
-		return !saved.project_id.includes(CardInfo._id) ? (
+		return !saved.project_id || !saved.project_id.includes(CardInfo._id) ? (
 			<button
 				onClick={addToSaved}
 				className="active:bg-blue-600 transition-colors border-2 border-blue-600 px-2 py-1 rounded-md active:text-white font-semibold flex items-center gap-1 focus:outline-none">
@@ -57,12 +57,8 @@ const Card = ({ CardInfo }) => {
 	};
 
 	return (
-		<div className="bg-white w-96 h-full rounded-md shadow-md hover:shadow-lg">
-			<img
-				src={CardInfo.image}
-				alt={CardInfo.project_name}
-				className="w-full lg:h-56 xl:h-60 object-cover rounded-t-md"
-			/>
+		<div className="bg-white h-full overflow-hidden rounded-md shadow-md hover:shadow-lg transition-shadow">
+			<img src={CardInfo.image} alt={CardInfo.project_name} className="w-full object-cover" />
 			<div className="space-y-1 lg:space-y-3 p-3">
 				<h1 className="text-lg lg:text-xl xl:text-2xl text-blue-600 font-semibold">
 					{CardInfo.project_name}
@@ -72,7 +68,7 @@ const Card = ({ CardInfo }) => {
 				</p>
 				<div className="flex items-center justify-between">
 					<Link to={`/project/${CardInfo._id}`}>
-						<div className="text-gray-800 flex items-end gap-1">
+						<div className="text-gray-800 active:text-blue-600 transition-colors flex items-end gap-1">
 							Read More <ArrowNarrowRightIcon className="w-5 h-5" />
 						</div>
 					</Link>
