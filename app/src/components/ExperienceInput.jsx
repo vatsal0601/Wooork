@@ -1,4 +1,42 @@
-const ExperienceInput = ({ experience, handleExperience, addExperience, removeExperience }) => {
+const ExperienceInput = ({ experience, setExperience }) => {
+	const addExperience = () => {
+		const values = [...experience];
+		values.push({
+			company_name: "",
+			role: "",
+			duration: "",
+			work_description: "",
+		});
+		setExperience(values);
+	};
+
+	const removeExperience = (index) => {
+		const values = [...experience];
+		values.splice(index, 1);
+		setExperience(values);
+	};
+
+	const handleExperience = (index, value, key) => {
+		const values = [...experience];
+		switch (key) {
+			case "company_name":
+				values[index].company_name = value;
+				break;
+			case "role":
+				values[index].role = value;
+				break;
+			case "duration":
+				values[index].duration = value;
+				break;
+			case "work_description":
+				values[index].work_description = value;
+				break;
+			default:
+				break;
+		}
+		setExperience(values);
+	};
+
 	return (
 		<div>
 			<label
@@ -15,6 +53,7 @@ const ExperienceInput = ({ experience, handleExperience, addExperience, removeEx
 									type="text"
 									name="company_name"
 									placeholder="Company Name"
+									value={value.company_name}
 									onChange={(e) => handleExperience(index, e.target.value, "company_name")}
 									className="p-3 w-full focus:ring-3 ring-blue-600 text-sm lg:text-base truncate border-gray-300 placeholder-gray-400 focus:outline-none rounded-md"
 								/>
@@ -22,6 +61,7 @@ const ExperienceInput = ({ experience, handleExperience, addExperience, removeEx
 									type="text"
 									name="role"
 									placeholder="Role"
+									value={value.role}
 									onChange={(e) => handleExperience(index, e.target.value, "role")}
 									className="p-3 w-full focus:ring-3 ring-blue-600 text-sm lg:text-base truncate border-gray-300 placeholder-gray-400 focus:outline-none rounded-md"
 								/>
@@ -31,6 +71,7 @@ const ExperienceInput = ({ experience, handleExperience, addExperience, removeEx
 									type="text"
 									name="duration"
 									placeholder="Duration"
+									value={value.duration}
 									onChange={(e) => handleExperience(index, e.target.value, "duration")}
 									className="p-3 w-full focus:ring-3 ring-blue-600 text-sm lg:text-base truncate border-gray-300 placeholder-gray-400 focus:outline-none rounded-md"
 								/>
@@ -38,6 +79,7 @@ const ExperienceInput = ({ experience, handleExperience, addExperience, removeEx
 									type="text"
 									name="work_description"
 									placeholder="Work Description"
+									value={value.work_description}
 									onChange={(e) => handleExperience(index, e.target.value, "work_description")}
 									className="p-3 w-full focus:ring-3 ring-blue-600 text-sm lg:text-base truncate border-gray-300 placeholder-gray-400 focus:outline-none rounded-md"
 								/>

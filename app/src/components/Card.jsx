@@ -60,9 +60,12 @@ const Card = ({ CardInfo }) => {
 		<div className="bg-white h-full overflow-hidden rounded-md shadow-md hover:shadow-lg transition-shadow">
 			<img src={CardInfo.image} alt={CardInfo.project_name} className="w-full object-cover" />
 			<div className="space-y-1 lg:space-y-3 p-3">
-				<h1 className="text-lg lg:text-xl xl:text-2xl text-blue-600 font-semibold">
-					{CardInfo.project_name}
-				</h1>
+				<div className="-space-y-1">
+					<h1 className="text-lg lg:text-xl xl:text-2xl text-blue-600 font-semibold">
+						{CardInfo.project_name}
+					</h1>
+					<p className="text-xs lg:text-sm xl:text-base text-gray-400">by {CardInfo.owner_name}</p>
+				</div>
 				<p className="text-sm lg:text-base xl:text-lg text-gray-600 line-clamp-3">
 					{CardInfo.description}
 				</p>

@@ -64,11 +64,6 @@ router.delete("/delete=:id", getUserById, async (req, res, next) => {
 
 // Update user by id
 router.patch("/update=:id", getUserById, async (req, res, next) => {
-	if (req.body.name != null) res.user.name = req.body.name;
-	if (req.body.username != null) res.user.username = req.body.username;
-	if (req.body.email != null) res.user.email = req.body.email;
-	if (req.body.avatar != null) res.user.avatar = req.body.avatar;
-	if (req.body.phone != null) res.user.phone = req.body.phone;
 	if (req.body.social_links != null) res.user.social_links = req.body.social_links;
 	if (req.body.education != null) res.user.education = req.body.education;
 	if (req.body.experience != null) res.user.experience = req.body.experience;

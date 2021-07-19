@@ -1,3 +1,10 @@
+### Developers Note
+
+- [x] Add notification field
+- [x] Fix Register form (not updating correctly though the values are correct)
+- [x] Check Register
+- [x] If user is owner add edit button and remove collaboration button
+
 # Pages
 
 | Page      | Description                           |

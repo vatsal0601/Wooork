@@ -64,6 +64,20 @@ router.get("/user_id=:user_id", getProjectsByUserId, (req, res, next) => {
 	res.json(res.project);
 });
 
+// Get project_id's for a particular user
+router.get("/project_id=:user_id", async (req, res, next) => {
+	let project_id;
+	try {
+		project_id = await Project.find({ user_id: req.params.user_id }, { _id: 1 });
+		if (project_id == null) return res.status(404).json({ message: "Cannot find project id" });
+	} catch (err) {
+		return res.status(500).json({ message: err });
+	}
+	let projectIdArray = [];
+	for (id of project_id) projectIdArray.push(id._id);
+	res.json({ projectIdArray });
+});
+
 // Get project by project_name
 router.get("/project_name=:project_name", getProjectByName, (req, res, next) => {
 	res.json(res.project);

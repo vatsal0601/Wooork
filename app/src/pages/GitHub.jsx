@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authorize, userData, savedData } from "../actions/index";
+import { authorize, userData, savedData, gitHubData, userProject } from "../actions/index";
 import axios from "../axios";
 
-const Github = ({ setFormStep }) => {
+const Github = ({ setFormStep, setUserGitHubInfo }) => {
 	const { data } = useParams();
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -21,18 +21,21 @@ const Github = ({ setFormStep }) => {
 			};
 		};
 
-		const authorizeUser = (githubInfo, databaseInfo, savedInfo) => {
+		const authorizeUser = (githubInfo, databaseInfo, savedInfo, userProjectId) => {
 			dispatch(authorize());
 			dispatch(userData({ ...githubInfo, ...databaseInfo }));
 			dispatch(savedData(savedInfo));
+			dispatch(userProject([...userProjectId.projectIdArray]));
 		};
 
 		const fetchData = async () => {
-			const userGitHubInfo = getData();
+			const githubData = getData();
+			dispatch(gitHubData({ ...githubData }));
 			try {
-				const reqUserData = await axios.get(`/user/username=${userGitHubInfo.username}`);
+				const reqUserData = await axios.get(`/user/username=${githubData.username}`);
 				const reqUserSavedData = await axios.get(`/saved/${reqUserData.data._id}`);
-				authorizeUser(userGitHubInfo, reqUserData.data, reqUserSavedData.data);
+				const reqUserProjectId = await axios.get(`/project/project_id=${reqUserData.data._id}`);
+				authorizeUser(githubData, reqUserData.data, reqUserSavedData.data, reqUserProjectId.data);
 				history.push("/");
 			} catch (err) {
 				setFormStep(1);
@@ -41,7 +44,7 @@ const Github = ({ setFormStep }) => {
 			}
 		};
 		fetchData();
-	}, [data, history, dispatch, setFormStep]);
+	}, [data, history, dispatch, setFormStep, setUserGitHubInfo]);
 
 	return <h1>GitHub Authentication</h1>;
 };

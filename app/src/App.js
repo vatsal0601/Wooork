@@ -40,7 +40,7 @@ function App() {
 	const [formStep, setFormStep] = useState(0);
 
 	return (
-		<div className="min-h-screen relative pb-16 bg-gray-100">
+		<div className="min-h-screen relative pb-16 bg-gray-100 subpixel-antialiased">
 			<Router>
 				<Navbar toggle={toggle} />
 				<Sidebar isOpen={isOpen} toggle={toggle} />
@@ -62,14 +62,14 @@ function App() {
 					<Route path="/project/:id">
 						<Project />
 					</Route>
+					<Route path="/github/:data">
+						<GitHub setFormStep={setFormStep} />
+					</Route>
 					<Route path="/login">
 						<Login />
 					</Route>
 					<Route path="/register">
-						<Register formStep={formStep} setFormStep={setFormStep} />
-					</Route>
-					<Route path="/github/:data">
-						<GitHub setFormStep={setFormStep} />
+						<Register formStep={formStep} />
 					</Route>
 					<Route path="/">
 						<Home />

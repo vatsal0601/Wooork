@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { CheckCircleIcon } from "@heroicons/react/solid";
 import { useSelector } from "react-redux";
+import { CheckCircleIcon, PencilAltIcon } from "@heroicons/react/solid";
 import axios from "../axios";
 
 const Project = () => {
 	const { id } = useParams();
 	const [data, setData] = useState({});
 
+	const isAuthorized = useSelector((state) => state.isAuthorized);
+	const project_id = useSelector((state) => state.project_id);
 	const user = useSelector((state) => state.user);
 
 	useEffect(() => {
@@ -56,6 +58,12 @@ const Project = () => {
 			<h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-600 text-center my-5">
 				{data.project_name}
 			</h1>
+			{user._id === data.user_id && (
+				<button className="flex ml-auto items-center gap-1 px-5 py-3 rounded-md active:bg-blue-600 active:text-white transition-colors text-sm lg:text-base xl:text-lg font-semibold border-2 border-blue-600 focus:outline-none">
+					<PencilAltIcon className="w-4 lg:w-5 h-4 lg:h-5" />
+					Edit
+				</button>
+			)}
 			<div className="space-y-5 lg:space-y-0 lg:flex items-center gap-7 xl:gap-10">
 				<img
 					src={data.image}
@@ -103,7 +111,7 @@ const Project = () => {
 				</span>
 				{data.description}
 			</p>
-			{!requestSent && !request && (
+			{isAuthorized && !project_id.includes(data._id) && !requestSent && !request && (
 				<button
 					onClick={() => setRequest(true)}
 					className="px-5 py-3 rounded-md active:bg-blue-600 active:text-white transition-colors text-sm lg:text-base xl:text-lg font-semibold border-2 border-blue-600 focus:outline-none">
@@ -117,7 +125,7 @@ const Project = () => {
 						placeholder="Enter your message"
 						onChange={(e) => setDescription(e.target.value)}
 						rows="5"
-						className="w-full md:w-1/2 lg:w-1/3 p-3 focus:ring-3 ring-blue-600 text-sm lg:text-base border-transparent placeholder-gray-600 focus:placeholder-gray-400 focus:outline-none rounded-md shadow-md focus:shadow-sm"></textarea>
+						className="w-full md:w-1/2 lg:w-1/3 resize-none p-3 focus:ring-3 ring-blue-600 text-sm lg:text-base border-transparent placeholder-gray-600 focus:placeholder-gray-400 focus:outline-none rounded-md shadow-md focus:shadow-sm"></textarea>
 
 					<div className="space-x-3 lg:space-x-5">
 						<button

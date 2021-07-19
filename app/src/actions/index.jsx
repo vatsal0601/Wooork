@@ -29,3 +29,17 @@ export const removeSavedData = () => {
 		type: "REMOVE_SAVED_DATA",
 	};
 };
+
+export const gitHubData = (payload) => {
+	return {
+		type: "GITHUB_DATA",
+		payload,
+	};
+};
+
+export const userProject = (payload) => {
+	return {
+		type: "USER_PROJECT",
+		payload,
+	};
+};

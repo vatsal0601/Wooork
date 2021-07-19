@@ -1,4 +1,22 @@
-const SkillsInput = ({ skills, handleSkill, addSkill, removeSkill }) => {
+const SkillsInput = ({ skills, setSkills }) => {
+	const addSkill = () => {
+		const values = [...skills];
+		values.push({ value: "" });
+		setSkills(values);
+	};
+
+	const removeSkill = (index) => {
+		const values = [...skills];
+		values.splice(index, 1);
+		setSkills(values);
+	};
+
+	const handleSkill = (index, value) => {
+		const values = [...skills];
+		values[index].value = value;
+		setSkills(values);
+	};
+
 	return (
 		<div>
 			<label htmlFor="phone" className="block font-semibold text-gray-600 text-sm lg:text-base">
@@ -12,6 +30,7 @@ const SkillsInput = ({ skills, handleSkill, addSkill, removeSkill }) => {
 								type="text"
 								name="skills"
 								placeholder="Skills"
+								value={skill.value}
 								onChange={(e) => handleSkill(index, e.target.value)}
 								className="p-3 w-full focus:ring-3 ring-blue-600 text-sm lg:text-base truncate border-gray-300 placeholder-gray-400 focus:outline-none rounded-md"
 							/>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { PlusIcon } from "@heroicons/react/solid";
 import Profile from "../components/DashboardProfile";
 import Dropdown from "../components/Dropdown";
 import Card from "../components/Card";
@@ -46,6 +47,10 @@ const Dashboard = () => {
 			<Profile />
 			<div className="space-y-5 md:space-y-7 mx-auto max-w-max">
 				<Dropdown list={category} selected={selected} setSelected={setSelected} />
+				<button className="flex ml-auto items-center gap-1 px-5 py-3 rounded-md active:bg-blue-600 active:text-white transition-colors text-sm lg:text-base xl:text-lg font-semibold border-2 border-blue-600 focus:outline-none">
+					<PlusIcon className="w-5 lg:w-6 h-5 lg:h-6" />
+					Create Project
+				</button>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
 					{cards && cards.length > 0 ? (
 						cards.map((card, index) => <Card key={index} CardInfo={card} />)

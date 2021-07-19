@@ -8,8 +8,6 @@
 - [ ] Separate controller logic from routes
 - [ ] Add or remove collaborators in projects
 - [ ] Change remove project method to patch in saved
-- [ ] Add notification field
-- [ ] Add edit option
 
 # Database Tables
 
