@@ -95,7 +95,6 @@ router.delete("/delete=:id", getProjectById, async (req, res, next) => {
 
 // Update project by id
 router.patch("/update=:id", getProjectById, async (req, res, next) => {
-	if (req.body.project_name != null) res.project.project_name = req.body.project_name;
 	if (req.body.description != null) res.project.description = req.body.description;
 	if (req.body.url != null) res.project.url = req.body.url;
 	if (req.body.tag != null) res.project.tag = req.body.tag;

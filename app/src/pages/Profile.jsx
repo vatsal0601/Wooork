@@ -38,14 +38,19 @@ const Profile = () => {
 		};
 
 		const fetchData = async () => {
-			const req = await axios.get(`/user/${id}`);
-			setUser(req.data);
-			if (req.data.skills && req.data.skills.length > 0)
-				setSkills([...createSkillsArray(req.data.skills)]);
-			if (req.data.education && req.data.education.length > 0) setEducation(req.data.education);
-			if (req.data.experience && req.data.experience.length > 0) setExperience(req.data.experience);
-			if (req.data.social_links && req.data.social_links.length > 0)
-				setSocial(req.data.social_links);
+			try {
+				const req = await axios.get(`/user/${id}`);
+				setUser(req.data);
+				if (req.data.skills && req.data.skills.length > 0)
+					setSkills([...createSkillsArray(req.data.skills)]);
+				if (req.data.education && req.data.education.length > 0) setEducation(req.data.education);
+				if (req.data.experience && req.data.experience.length > 0)
+					setExperience(req.data.experience);
+				if (req.data.social_links && req.data.social_links.length > 0)
+					setSocial(req.data.social_links);
+			} catch (err) {
+				console.error(err);
+			}
 		};
 		fetchData();
 	}, [id]);
@@ -58,13 +63,17 @@ const Profile = () => {
 		};
 
 		const submitData = async () => {
-			const req = await axios.patch(`/user/update=${id}`, {
-				social_links: social,
-				education: education,
-				experience: experience,
-				skills: handleSkills(),
-			});
-			setUser(req.data);
+			try {
+				const req = await axios.patch(`/user/update=${id}`, {
+					social_links: social,
+					education: education,
+					experience: experience,
+					skills: handleSkills(),
+				});
+				setUser(req.data);
+			} catch (err) {
+				console.error(err);
+			}
 		};
 
 		const allEqual = (arr) => arr.every((v) => v === arr[0]);
@@ -79,18 +88,21 @@ const Profile = () => {
 
 	const handleDelete = () => {
 		const deleteUser = async () => {
-			const req = await axios.delete(`/user/delete${id}`);
-			console.log(req.data);
+			try {
+				await axios.delete(`/user/delete=${id}`);
+				dispatch(authorize());
+				dispatch(removeUserData());
+				dispatch(removeSavedData());
+			} catch (err) {
+				console.error(err);
+			}
 		};
 		deleteUser();
-		dispatch(authorize());
-		dispatch(removeUserData());
-		dispatch(removeSavedData());
 	};
 
 	return (
 		<div className="container mx-auto px-5 md:px-10 my-28 space-y-5">
-			{userData._id === user._id && !isEditing && (
+			{isAuthorized && userData._id === user._id && !isEditing && (
 				<div className="w-max ml-auto space-x-3">
 					<button
 						onClick={() => setIsEditing(true)}
@@ -106,7 +118,7 @@ const Profile = () => {
 					</button>
 				</div>
 			)}
-			{userData._id === user._id && isEditing && (
+			{isAuthorized && userData._id === user._id && isEditing && (
 				<div className="w-max ml-auto space-x-3">
 					<button
 						onClick={() => {

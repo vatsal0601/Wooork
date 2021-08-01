@@ -1,6 +1,7 @@
 .vscode
 .env
-node_modules
 *.rest
 *.json
 *.jfif
+node_modules
+images

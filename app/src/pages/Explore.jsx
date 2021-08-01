@@ -34,15 +34,23 @@ const Explore = () => {
 			switch (selected) {
 				case "Projects":
 					setTitle("Tags");
-					req = await axios.get("/project/tags");
-					setList(createObjectArray(req.data));
-					setSelectedList([]);
+					try {
+						req = await axios.get("/project/tags");
+						setList(createObjectArray(req.data));
+						setSelectedList([]);
+					} catch (err) {
+						console.error(err);
+					}
 					break;
 				case "Profiles":
 					setTitle("Skills");
-					req = await axios.get("/user/skills");
-					setList(createObjectArray(req.data));
-					setSelectedList([]);
+					try {
+						req = await axios.get("/user/skills");
+						setList(createObjectArray(req.data));
+						setSelectedList([]);
+					} catch (err) {
+						console.error(err);
+					}
 					break;
 				default:
 					break;
@@ -56,12 +64,20 @@ const Explore = () => {
 			let req;
 			switch (selected) {
 				case "Projects":
-					req = await axios.get(`/project/search/${array.map((value) => `${value}`).join("&")}`);
-					setData(req.data);
+					try {
+						req = await axios.get(`/project/search/${array.map((value) => `${value}`).join("&")}`);
+						setData(req.data);
+					} catch (err) {
+						console.error(err);
+					}
 					break;
 				case "Profiles":
-					req = await axios.get(`/user/search/${array.map((value) => `${value}`).join("&")}`);
-					setData(req.data);
+					try {
+						req = await axios.get(`/user/search/${array.map((value) => `${value}`).join("&")}`);
+						setData(req.data);
+					} catch (err) {
+						console.error(err);
+					}
 					break;
 				default:
 					break;

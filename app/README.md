@@ -4,6 +4,8 @@
 - [x] Fix Register form (not updating correctly though the values are correct)
 - [x] Check Register
 - [x] If user is owner add edit button and remove collaboration button
+- [ ] Add validation for collaborators
+- [ ] Fix Sidebar
 
 # Pages
 

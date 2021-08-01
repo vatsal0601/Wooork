@@ -14,12 +14,16 @@ const Home = () => {
 		document.title = "Wooork";
 
 		const fetchData = async () => {
-			const reqSkills = await axios.get("/user/skills");
-			const reqCardData = await axios.get("/project/random");
-			const reqProfileData = await axios.get("/user/random");
-			setSkills(reqSkills.data);
-			setCardData(reqCardData.data);
-			setProfileData(reqProfileData.data);
+			try {
+				const reqSkills = await axios.get("/user/skills");
+				const reqCardData = await axios.get("/project/random");
+				const reqProfileData = await axios.get("/user/random");
+				setSkills(reqSkills.data);
+				setCardData(reqCardData.data);
+				setProfileData(reqProfileData.data);
+			} catch (err) {
+				console.error(err);
+			}
 		};
 		fetchData();
 	}, []);

@@ -19,7 +19,37 @@ const About = () => {
 				<div className="space-y-1 lg:space-y-3">
 					<h2 className="text-xl lg:text-2xl xl:text-3xl font-bold">How it started?</h2>
 					<p className="lg:text-base xl:text-xl text-gray-600 max-w-prose">
-						The project was started initially at a Hackathon
+						The project idea was initially found at a hackathon called HackNUThon by{" "}
+						<a
+							href="https://www.instagram.com/vatsal_sakariya/"
+							className="text-blue-600 hover:underline">
+							me
+						</a>{" "}
+						and my friends{" "}
+						<a
+							href="https://www.instagram.com/ds._.1101/"
+							className="text-blue-600 hover:underline">
+							Darshan
+						</a>
+						,{" "}
+						<a
+							href="https://www.instagram.com/jainish_savalia/"
+							className="text-blue-600 hover:underline">
+							Jainish
+						</a>{" "}
+						and{" "}
+						<a
+							href="https://www.instagram.com/janmejay.16/"
+							className="text-blue-600 hover:underline">
+							Janmejay
+						</a>{" "}
+						but due to time constraint we were not able to complete the project. During the
+						hackathon the project idea was built and after the hackathon ended I started building
+						this project.
+					</p>
+					<p className="lg:text-base xl:text-xl text-gray-600 max-w-prose">
+						Frontend for this project is built with React, React-Router, Redux, Axios and
+						TailwindCSS. Backend is build with NodeJS and MongoDB as the database.
 					</p>
 				</div>
 			</div>

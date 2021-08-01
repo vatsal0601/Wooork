@@ -38,7 +38,7 @@ const Card = ({ CardInfo }) => {
 			dispatch(savedData(req.data));
 			renderSaveButton();
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 
@@ -52,7 +52,7 @@ const Card = ({ CardInfo }) => {
 			dispatch(savedData(req.data));
 			renderSaveButton();
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 

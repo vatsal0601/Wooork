@@ -27,7 +27,10 @@ const ExploreLeftContainer = ({ title, list, handleChange }) => {
 	}, []);
 
 	return (
-		<div className="bg-white p-3 md:w-64 sticky top-3 flex-shrink-0 h-full space-y-3 rounded-md">
+		<div
+			className={`bg-white p-3 md:w-64 sticky top-3 flex-shrink-0 ${
+				isOpen && `h-96`
+			} md:h-full overflow-auto space-y-3 rounded-md`}>
 			<div className="flex items-center justify-between md:justify-center">
 				<h1 className="uppercase font-semibold">{title}</h1>
 				<ChevronDownIcon onClick={toggle} className="w-5 h-5 cursor-pointer md:hidden" />

@@ -23,7 +23,7 @@ const projectSchema = new mongoose.Schema({
 	tag: [String],
 	collaborators: [
 		{
-			user_id: String,
+			username: String,
 			name: String,
 			role: String,
 		},

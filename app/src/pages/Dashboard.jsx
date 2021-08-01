@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { PlusIcon } from "@heroicons/react/solid";
+import { Link } from "react-router-dom";
 import Profile from "../components/DashboardProfile";
 import Dropdown from "../components/Dropdown";
 import Card from "../components/Card";
@@ -15,8 +16,12 @@ const Dashboard = () => {
 	const getSavedProjects = async (savedArray) => {
 		const cardsArray = [];
 		for (let project of savedArray) {
-			const req = await axios.get(`/project/${project}`);
-			cardsArray.push(req.data);
+			try {
+				const req = await axios.get(`/project/${project}`);
+				cardsArray.push(req.data);
+			} catch (err) {
+				console.error(err);
+			}
 		}
 		setCards(cardsArray);
 	};
@@ -28,12 +33,20 @@ const Dashboard = () => {
 			let req;
 			switch (selected) {
 				case "Projects":
-					req = await axios.get(`/project/user_id=${user._id}`);
-					setCards(req.data);
+					try {
+						req = await axios.get(`/project/user_id=${user._id}`);
+						setCards(req.data);
+					} catch (err) {
+						console.error(err);
+					}
 					break;
 				case "Saved":
-					req = await axios.get(`/saved/${user._id}`);
-					await getSavedProjects(req.data.project_id);
+					try {
+						req = await axios.get(`/saved/${user._id}`);
+						await getSavedProjects(req.data.project_id);
+					} catch (err) {
+						console.error(err);
+					}
 					break;
 				default:
 					break;
@@ -47,10 +60,12 @@ const Dashboard = () => {
 			<Profile />
 			<div className="space-y-5 md:space-y-7 mx-auto max-w-max">
 				<Dropdown list={category} selected={selected} setSelected={setSelected} />
-				<button className="flex ml-auto items-center gap-1 px-5 py-3 rounded-md active:bg-blue-600 active:text-white transition-colors text-sm lg:text-base xl:text-lg font-semibold border-2 border-blue-600 focus:outline-none">
-					<PlusIcon className="w-5 lg:w-6 h-5 lg:h-6" />
-					Create Project
-				</button>
+				<Link to="/new" className="block">
+					<button className="flex ml-auto items-center gap-1 px-5 py-3 rounded-md active:bg-blue-600 active:text-white transition-colors text-sm lg:text-base xl:text-lg font-semibold border-2 border-blue-600 focus:outline-none">
+						<PlusIcon className="w-5 lg:w-6 h-5 lg:h-6" />
+						Create Project
+					</button>
+				</Link>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
 					{cards && cards.length > 0 ? (
 						cards.map((card, index) => <Card key={index} CardInfo={card} />)

@@ -13,9 +13,9 @@ const Profile = ({ UserInfo }) => {
 				{UserInfo.skills && UserInfo.skills.length > 0 && (
 					<p className="text-sm lg:text-base xl:text-lg text-gray-600 italic">
 						{UserInfo.skills.slice(0, 3).map((element, index) => (
-							<span key={index}>
+							<span key={index} className="font-light">
 								#{element}
-								{index !== 2 && ", "}
+								{index !== UserInfo.skills.length - 1 && index !== 2 && ", "}
 							</span>
 						))}
 					</p>

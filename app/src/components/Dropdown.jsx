@@ -1,5 +1,7 @@
+import { Fragment } from "react";
 import { Listbox } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { Transition } from "@headlessui/react";
 
 const Dropdown = ({ list, selected, setSelected }) => {
 	return (
@@ -12,35 +14,41 @@ const Dropdown = ({ list, selected, setSelected }) => {
 							<SelectorIcon className="w-5 h-5 text-gray-400" />
 						</span>
 					</Listbox.Button>
-					<Listbox.Options className="absolute w-full py-2 mt-1 overflow-auto bg-white rounded-md shadow-md max-h-60 focus:outline-none">
-						{list.map((value, index) => (
-							<Listbox.Option
-								key={index}
-								className={({ active }) =>
-									`${active ? "text-blue-600 bg-blue-100" : "text-black"}
-                          cursor-pointer select-none relative py-2 pl-3`
-								}
-								value={value}>
-								{({ selected, active }) => (
-									<>
-										<span
-											className={`${
-												selected ? "font-medium" : "font-normal"
-											} text-sm lg:text-base block truncate`}>
-											{value}
-										</span>
-										{selected ? (
+					<Transition
+						as={Fragment}
+						leave="transition-opacity duration-75"
+						leaveFrom="opacity-100"
+						leaveTo="opacity-0">
+						<Listbox.Options className="absolute w-full py-2 mt-1 overflow-auto bg-white rounded-md shadow-md max-h-60 focus:outline-none">
+							{list.map((value, index) => (
+								<Listbox.Option
+									key={index}
+									className={({ active }) =>
+										`${active ? "text-blue-600 bg-blue-100" : "text-black"}
+												  cursor-pointer select-none relative py-2 pl-3`
+									}
+									value={value}>
+									{({ selected, active }) => (
+										<>
 											<span
-												className={`${active ? "text-blue-600" : "text-blue-600"}
-                                absolute inset-y-0 right-0 flex items-center pr-3`}>
-												<CheckIcon className="w-5 h-5" />
+												className={`${
+													selected ? "font-medium" : "font-normal"
+												} text-sm lg:text-base block truncate`}>
+												{value}
 											</span>
-										) : null}
-									</>
-								)}
-							</Listbox.Option>
-						))}
-					</Listbox.Options>
+											{selected ? (
+												<span
+													className={`${active ? "text-blue-600" : "text-blue-600"}
+														absolute inset-y-0 right-0 flex items-center pr-3`}>
+													<CheckIcon className="w-5 h-5" />
+												</span>
+											) : null}
+										</>
+									)}
+								</Listbox.Option>
+							))}
+						</Listbox.Options>
+					</Transition>
 				</div>
 			</Listbox>
 		</div>

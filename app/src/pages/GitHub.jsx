@@ -46,7 +46,12 @@ const Github = ({ setFormStep, setUserGitHubInfo }) => {
 		fetchData();
 	}, [data, history, dispatch, setFormStep, setUserGitHubInfo]);
 
-	return <h1>GitHub Authentication</h1>;
+	return (
+		<div>
+			<h1 className="text-lg">GitHub Authentication</h1>
+			<p>You will be redirected shortly...</p>
+		</div>
+	);
 };
 
 export default Github;

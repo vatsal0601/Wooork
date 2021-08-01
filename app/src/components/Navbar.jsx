@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Fragment } from "react";
 import { MenuAlt2Icon, BellIcon } from "@heroicons/react/solid";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authorize, removeUserData, removeSavedData } from "../actions";
+import { Transition } from "@headlessui/react";
 import axios from "../axios";
 import Logo from "../images/logo.svg";
 
@@ -34,8 +35,12 @@ const Navbar = ({ toggle }) => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const req = await axios.get(`/notification/${user._id}`);
-			setNotificationData(req.data.notification);
+			try {
+				const req = await axios.get(`/notification/${user._id}`);
+				setNotificationData(req.data.notification);
+			} catch (err) {
+				console.error(err);
+			}
 		};
 		if (toggleNotification) fetchData();
 	}, [toggleNotification, user]);
@@ -117,8 +122,16 @@ const Navbar = ({ toggle }) => {
 						className="w-6 h-6 text-gray-600 active:text-blue-600 transition-colors md:hidden cursor-pointer"
 					/>
 				</div>
-				{toggleNotification && (
-					<div className="absolute top-20 right-3 w-10/12 md:w-96 max-h-96 overflow-auto p-3 text-sm lg:text-base divide-y divide-gray-300 text-gray-600 bg-white shadow-md rounded-md">
+				<Transition
+					as={Fragment}
+					show={toggleNotification}
+					enter="transform transition duration-150"
+					enterFrom="-translate-y-1/4 opacity-0"
+					enterTo="translate-y-0 opacity-100"
+					leave="transform transition duration-150"
+					leaveFrom="translate-y-0 opacity-100"
+					leaveTo="-translate-y-1/4 opacity-0">
+					<div className="absolute top-20 right-3 z-30 w-10/12 md:w-96 max-h-96 overflow-auto p-3 text-sm lg:text-base divide-y divide-gray-300 text-gray-600 bg-white shadow-md rounded-md">
 						{notificationData && notificationData.length > 0 ? (
 							notificationData.map((notification, index) => (
 								<p key={index}>
@@ -132,7 +145,7 @@ const Navbar = ({ toggle }) => {
 							<p className="text-center italic">No new notifications</p>
 						)}
 					</div>
-				)}
+				</Transition>
 			</nav>
 		</header>
 	);
