@@ -131,7 +131,7 @@ router.get("/tags", async (req, res, next) => {
 	res.json([...new Set(tagArray)]);
 });
 
-// Get search results from array
+// Get projects from given array of tags
 router.get("/search/:array", async (req, res, next) => {
 	searchArray = req.params.array.split("&");
 	try {

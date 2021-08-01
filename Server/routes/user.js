@@ -99,7 +99,7 @@ router.get("/skills", async (req, res, next) => {
 	res.json([...new Set(skillsArray)]);
 });
 
-// Get search results from array
+// Get users from given array of skills
 router.get("/search/:array", async (req, res, next) => {
 	searchArray = req.params.array.split("&");
 	try {

@@ -1,9 +1,5 @@
 ### Developers Note
 
-- [x] Add notification field
-- [x] Fix Register form (not updating correctly though the values are correct)
-- [x] Check Register
-- [x] If user is owner add edit button and remove collaboration button
 - [ ] Add validation for collaborators
 - [ ] Fix Sidebar
 
@@ -19,5 +15,3 @@
 | Profile   | For viewing the user data             |
 | Project   | For viewing the project               |
 | Register  | For registering to the app            |
-
-# Components

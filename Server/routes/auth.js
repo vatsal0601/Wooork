@@ -70,8 +70,4 @@ router.get("/github/callback", async (req, res, next) => {
 	);
 });
 
-router.get("/", (req, res, next) => {
-	res.send("Authentication");
-});
-
 module.exports = router;
