@@ -13,7 +13,7 @@ const Login = () => {
 				<div className="space-y-28">
 					<h1 className="text-3xl lg:text-4xl xl:text-5xl font-semibold text-center">Login</h1>
 					<a
-						href={`${process.env.REACT_APP_BASE_URL}/auth/github`}
+						href="https://wooork0601.herokuapp.com/auth/github"
 						className="w-full flex items-center justify-center gap-3 md:gap-5 font-semibold md:text-lg px-5 py-3 rounded-md active:bg-blue-600 active:text-white transition-colors border-2 border-blue-600 focus:outline-none">
 						<GitHub className="w-7 md:w-9 h-7 md:h-9" />
 						Login with GitHub

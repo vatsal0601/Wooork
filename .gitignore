@@ -1,5 +1,7 @@
 .vscode
 .env
+.netlify
+.gitignore
 node_modules
 images
 testing

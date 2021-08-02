@@ -36,7 +36,7 @@ const getGitHubEmail = async (access_token) => {
 };
 
 router.get("/github", (req, res, next) => {
-	redirect_uri = "http://localhost:5000/auth/github/callback";
+	redirect_uri = "https://wooork0601.herokuapp.com/auth/github/callback";
 	res.redirect(
 		`https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${redirect_uri}&scope=read:user%20user:email`
 	);
@@ -64,7 +64,7 @@ router.get("/github/callback", async (req, res, next) => {
 		email: githubData.email,
 	});*/
 	res.redirect(
-		`http://localhost:3000/github/${githubData.login}%20${encodeURIComponent(
+		`https://wooork.netlify.app/github/${githubData.login}%20${encodeURIComponent(
 			githubData.html_url
 		)}%20${encodeURIComponent(githubData.avatar_url)}%20${githubData.name}%20${githubData.email}`
 	);

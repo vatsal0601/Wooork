@@ -150,7 +150,7 @@ const Project = () => {
 					url: url,
 					tag: handleTags(),
 					collaborators: collaborator,
-					image: `${process.env.REACT_APP_BASE_URL}/images/${user._id}_${file.name}`,
+					image: `https://wooork0601.herokuapp.com/images/${user._id}_${file.name}`,
 					project_status: selected,
 				});
 			} catch (err) {

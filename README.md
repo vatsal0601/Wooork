@@ -26,5 +26,3 @@ cd app
 npm instal
 npm start
 ```
-
-- Head over to http://localhost:3000/ for viewing the app and the server is running at http://localhost:5000/
