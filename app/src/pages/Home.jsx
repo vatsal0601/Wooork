@@ -62,7 +62,7 @@ const Home = () => {
 					<h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3">Some recent profiles</h1>
 					<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
 						{profileData.map((profile, index) => (
-							<Link key={index} to={`/profile/${profile._id}`}>
+							<Link key={index} to={`/profile/${profile._id}`} aria-label={profile.name}>
 								<Profile UserInfo={profile} />
 							</Link>
 						))}

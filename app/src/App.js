@@ -45,7 +45,7 @@ function App() {
 	const location = useLocation();
 
 	return (
-		<div className="min-h-screen relative pb-16 bg-gray-100 subpixel-antialiased transform-gpu">
+		<div className="min-h-screen relative pb-16 bg-gray-100 subpixel-antialiased">
 			<Navbar toggle={toggle} />
 			<Sidebar isOpen={isOpen} toggle={toggle} />
 			<TransitionGroup>

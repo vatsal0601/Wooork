@@ -64,13 +64,15 @@ const Card = ({ CardInfo }) => {
 					<h1 className="text-lg lg:text-xl xl:text-2xl text-blue-600 font-semibold">
 						{CardInfo.project_name}
 					</h1>
-					<p className="text-xs lg:text-sm xl:text-base text-gray-400">by {CardInfo.owner_name}</p>
+					<p className="text-xs lg:text-sm xl:text-base text-gray-600 font-light">
+						by {CardInfo.owner_name}
+					</p>
 				</div>
 				<p className="text-sm lg:text-base xl:text-lg text-gray-600 line-clamp-3">
 					{CardInfo.description}
 				</p>
 				<div className="flex items-center justify-between">
-					<Link to={`/project/${CardInfo._id}`}>
+					<Link to={`/project/${CardInfo._id}`} aria-label={CardInfo.project_name}>
 						<div className="text-gray-800 active:text-blue-600 transition-colors flex items-end gap-1">
 							Read More <ArrowNarrowRightIcon className="w-5 h-5" />
 						</div>

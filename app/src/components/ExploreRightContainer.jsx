@@ -45,7 +45,7 @@ const ExploreRightContainer = ({ selected, data, search }) => {
 					<div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
 						{filterData().length > 0 ? (
 							filterData().map((element, index) => (
-								<Link key={index} to={`profile/${element._id}`}>
+								<Link key={index} to={`profile/${element._id}`} aria-label={element.name}>
 									<Profile UserInfo={element} />
 								</Link>
 							))

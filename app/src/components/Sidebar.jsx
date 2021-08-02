@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, toggle }) => {
 			leaveFrom="translate-x-0 opacity-100"
 			leaveTo="translate-x-full opacity-0">
 			<div
-				className="bg-white w-full h-screen fixed z-50 inset-0 flex flex-col items-start justify-center gap-5 px-5"
+				className="bg-white w-full fixed z-50 inset-0 flex flex-col items-start justify-center gap-5 px-5"
 				role="navigation">
 				<XIcon
 					onClick={toggle}
