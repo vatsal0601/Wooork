@@ -4,7 +4,8 @@
   "description": "A platform where people can find projects to work on, find people to work with together for projects or freelancing work.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Vatsal Sakariya",
   "license": "ISC",

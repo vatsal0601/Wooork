@@ -1,7 +1,5 @@
 .vscode
 .env
-*.rest
-*.json
-*.jfif
 node_modules
 images
+testing

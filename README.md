@@ -16,7 +16,7 @@ for projects or freelancing work.
 ```bash
 cd server
 npm install
-npm run dev
+npm start
 ```
 
 Open the new terminal
