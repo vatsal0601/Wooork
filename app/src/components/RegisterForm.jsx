@@ -65,7 +65,7 @@ const RegisterForm = ({ setFormStep }) => {
 		const sendData = async () => {
 			try {
 				await axios.post("/user", {
-					name: gitHubData.name,
+					name: gitHubData.name === null || "null" ? gitHubData.username : gitHubData.name,
 					username: gitHubData.username,
 					email: gitHubData.email,
 					avatar: gitHubData.avatar,
