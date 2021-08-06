@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Form from "../components/RegisterForm";
 import GitHub from "../components/GitHubIcon";
 
-const Register = ({ formStep }) => {
+const Register = ({ formStep, setFormStep }) => {
 	useEffect(() => {
 		document.title = "Register";
 	}, []);
@@ -34,7 +34,7 @@ const Register = ({ formStep }) => {
 					</p>
 				</div>
 				<div className={formStep === 1 ? "" : "hidden"}>
-					<Form />
+					<Form setFormStep={setFormStep} />
 				</div>
 				<div className={formStep === 2 ? "" : "hidden"}>
 					<p className="lg:text-lg xl:text-xl text-center">Now you can login again</p>

@@ -7,7 +7,7 @@ import Experience from "./ExperienceInput";
 import Social from "./SocialInput";
 import axios from "../axios";
 
-const RegisterForm = () => {
+const RegisterForm = ({ setFormStep }) => {
 	const gitHubData = useSelector((state) => state.github);
 
 	const [phone, setPhone] = useState(null);
@@ -85,6 +85,7 @@ const RegisterForm = () => {
 			return null;
 		}
 		sendData();
+		setFormStep(2);
 	};
 
 	return (

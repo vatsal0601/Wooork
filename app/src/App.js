@@ -80,7 +80,7 @@ function App() {
 							<Login />
 						</Route>
 						<Route path="/register">
-							<Register formStep={formStep} />
+							<Register formStep={formStep} setFormStep={setFormStep} />
 						</Route>
 						<Route path="/">
 							<Home />

@@ -28,22 +28,30 @@ const getUserByUsername = async (req, res, next) => {
 
 // Creating User
 router.post("/", async (req, res, next) => {
-	user = new User({
-		name: req.body.name,
-		username: req.body.username,
-		email: req.body.email,
-		avatar: req.body.avatar,
-		phone: req.body.phone,
-		social_links: req.body.social_links,
-		education: req.body.education,
-		experience: req.body.experience,
-		skills: req.body.skills,
-	});
+	let user;
 	try {
-		const newUser = await user.save();
-		res.status(201).json(newUser);
+		user = await User.findOne({ username: req.body.username });
 	} catch (err) {
-		res.status(400).json({ message: err });
+		return res.status(500).json({ message: err });
+	}
+	if (user == null) {
+		user = new User({
+			name: req.body.name,
+			username: req.body.username,
+			email: req.body.email,
+			avatar: req.body.avatar,
+			phone: req.body.phone,
+			social_links: req.body.social_links,
+			education: req.body.education,
+			experience: req.body.experience,
+			skills: req.body.skills,
+		});
+		try {
+			const newUser = await user.save();
+			res.status(201).json(newUser);
+		} catch (err) {
+			res.status(400).json({ message: err });
+		}
 	}
 });
 

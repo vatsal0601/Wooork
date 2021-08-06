@@ -2,6 +2,7 @@
 .env
 .netlify
 .gitignore
+netlify.toml
 node_modules
 images
 testing
